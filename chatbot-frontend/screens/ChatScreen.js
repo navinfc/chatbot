@@ -20,7 +20,7 @@ export default function ChatScreen({ navigation }) {
   const deleteAllChats = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
-      await axios.delete("http://192.168.1.5:5000/api/chatbot/delete-all", {
+      await axios.delete("http://{ip}:5000/api/chatbot/delete-all", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -64,7 +64,7 @@ export default function ChatScreen({ navigation }) {
       const storedUserId = await AsyncStorage.getItem("userId");
       //   console.log("inside fetchMessages storedUserId", storedUserId);
       const response = await axios.get(
-        "http://192.168.1.5:5000/api/chatbot/all",
+        "http://{ip}5000/api/chatbot/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -117,7 +117,7 @@ export default function ChatScreen({ navigation }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.5:5000/api/chatbot/save",
+        "http://{ip}:5000/api/chatbot/save",
         { prompt: text },
         {
           headers: { Authorization: `Bearer ${token}` },
