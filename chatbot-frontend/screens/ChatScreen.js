@@ -64,7 +64,7 @@ export default function ChatScreen({ navigation }) {
       const storedUserId = await AsyncStorage.getItem("userId");
       //   console.log("inside fetchMessages storedUserId", storedUserId);
       const response = await axios.get(
-        "http://{ip}5000/api/chatbot/all",
+        "http://{ip}:5000/api/chatbot/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
