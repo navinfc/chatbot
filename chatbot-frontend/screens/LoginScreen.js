@@ -14,7 +14,23 @@ export default function LoginScreen({ navigation }) {
         password,
       });
 
+<<<<<<< HEAD
       console.log("Login Successful:", response.data);
+=======
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://{ip}:5000/api/auth/login', { email, password });
+            console.log('Login Successful:', response.data);
+            setToken(response.data.token);
+            await AsyncStorage.setItem('userId', response?.data?.user?.id);
+            console.log(setToken);
+            console.log("userID = ", AsyncStorage.getItem("userId"));
+            navigation.replace('Chat');
+        } catch (error) {
+            console.log('Login Error:', error.response.data.message);
+        }
+    };
+>>>>>>> 278bc8f700a1a1f84b1e9e746c3b4c822f046c2f
 
       // Store token & userId
       await AsyncStorage.setItem("token", response.data.token);

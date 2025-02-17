@@ -14,8 +14,39 @@ export default function ChatScreen({ route, navigation }) {
   const { chatId } = route.params; // Get chatId from navigation
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   // const [userId, setUserId] = useState("abcde");
   const userId = "abcde";
+=======
+  const [userId, setUserId] = useState("random");
+
+  //Delete ALL CHATS
+  const deleteAllChats = async () => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      await axios.delete("http://{ip}:5000/api/chatbot/delete-all", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Clear all messages from state
+      setMessages([]);
+    } catch (error) {
+      console.log("Error deleting all chats:", error);
+    }
+  };
+
+  // Logout function
+  const logout = async () => {
+    try {
+      await AsyncStorage.removeItem("token"); // Remove token
+      await AsyncStorage.removeItem("userId"); // Remove userId
+
+      navigation.replace("Login"); // Navigate to Login screen
+    } catch (error) {
+      console.log("Error during logout:", error);
+    }
+  };
+>>>>>>> 278bc8f700a1a1f84b1e9e746c3b4c822f046c2f
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -35,9 +66,20 @@ export default function ChatScreen({ route, navigation }) {
     try {
       setLoading(true);
       const token = await AsyncStorage.getItem("token");
+<<<<<<< HEAD
       const response = await axios.get(`http://192.168.1.6:5000/api/chatbot/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+=======
+      const storedUserId = await AsyncStorage.getItem("userId");
+      //   console.log("inside fetchMessages storedUserId", storedUserId);
+      const response = await axios.get(
+        "http://{ip}:5000/api/chatbot/all",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+>>>>>>> 278bc8f700a1a1f84b1e9e746c3b4c822f046c2f
 
       const formattedMessages = response.data.messages
         .flatMap((msg) => [
@@ -80,7 +122,11 @@ export default function ChatScreen({ route, navigation }) {
 
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         `http://192.168.1.6:5000/api/chatbot/${chatId}/send`,
+=======
+        "http://{ip}:5000/api/chatbot/save",
+>>>>>>> 278bc8f700a1a1f84b1e9e746c3b4c822f046c2f
         { prompt: text },
         { headers: { Authorization: `Bearer ${token}` } }
       );
