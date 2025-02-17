@@ -9,7 +9,7 @@ export default function RegisterScreen({ navigation }) {
 
     const handleRegister = async () => {
         try {
-            await axios.post('http://192.168.1.5:5000/api/auth/register', { name, email, password });
+            await axios.post('http://192.168.1.6:5000/api/auth/register', { name, email, password });
             navigation.replace('Login');
         } catch (error) {
             console.log('Register Error:', error.response.data.message);

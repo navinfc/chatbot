@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.send('Chatbot API is running...');
 });
 
-//ROutes
+//Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 
