@@ -24,7 +24,7 @@ export default function ChatListScreen({ navigation }) {
   const fetchChats = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
-      const response = await axios.get("http://192.168.1.6:5000/api/chatbot/all-chats", {
+      const response = await axios.get("http://192.168.1.7:5000/api/chatbot/all-chats", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -40,7 +40,7 @@ export default function ChatListScreen({ navigation }) {
   const createChat = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
-      const response = await axios.post("http://192.168.1.6:5000/api/chatbot/create", {}, {
+      const response = await axios.post("http://192.168.1.7:5000/api/chatbot/create", {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
   
@@ -62,7 +62,7 @@ export default function ChatListScreen({ navigation }) {
   const deleteChat = async (chatId) => {
     try {
       const token = await AsyncStorage.getItem("token");
-      await axios.delete(`http://192.168.1.6:5000/api/chatbot/${chatId}/delete`, {
+      await axios.delete(`http://192.168.1.7:5000/api/chatbot/${chatId}/delete`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -76,7 +76,7 @@ export default function ChatListScreen({ navigation }) {
   const deleteAllChats = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
-      await axios.delete("http://192.168.1.6:5000/api/chatbot/delete-all", {
+      await axios.delete("http://192.168.1.7:5000/api/chatbot/delete-all", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
